@@ -10,7 +10,7 @@ CITY = 'Beijing'
 EMAIL_USER = 'your_email@example.com'  
 EMAIL_PASS = 'your_email_password'  
 TO_EMAIL = 'user_email@example.com'  
-CHECK_INTERVAL = 60 * 10  # 每10分钟检查一次  
+CHECK_INTERVAL = 60 * 100  # 每10分钟检查一次  
 TEMPERATURE_THRESHOLD = 35  # 假设高温预警阈值为35摄氏度  
   
 # 初始化调度器  
