@@ -42,4 +42,13 @@ def fetch_weather_data():
         print("警报已发送")  
     except Exception as e:  
         print(f"发送邮件失败: {e}")  
+  def check_weather():  
+    temp = fetch_weather_data()  
+    if temp is not None and temp >= TEMPERATURE_THRESHOLD:  
+        send_alert(temp)  
+    # 重新调度任务  
+    scheduler.enter(CHECK_INTERVAL, 1, check_weather)  
   
+# 开始调度任务  
+scheduler.enter(0, 1, check_weather)  
+scheduler.run()
