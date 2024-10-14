@@ -1,1 +1,29 @@
-eewdwdwdwdefwwdwdwd
+import sched  
+import time  
+import requests  
+import smtplib  
+from email.mime.text import MIMEText  
+  
+# 配置  
+API_KEY = 'your_openweathermap_api_key'  
+CITY = 'Beijing'  
+EMAIL_USER = 'your_email@example.com'  
+EMAIL_PASS = 'your_email_password'  
+TO_EMAIL = 'user_email@example.com'  
+CHECK_INTERVAL = 60 * 10  # 每10分钟检查一次  
+TEMPERATURE_THRESHOLD = 35  # 假设高温预警阈值为35摄氏度  
+  
+# 初始化调度器  
+scheduler = sched.scheduler(time.time, time.sleep)  
+  
+def fetch_weather_data():  
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={CITY}&appid={API_KEY}&units=metric'  
+    response = requests.get(url)  
+    data = response.json()  
+      
+    if response.status_code == 200:  
+        temp = data['main']['temp']  
+        return temp  
+    else:  
+        print(f"Error fetching weather data: {data['message']}")  
+        return None  
