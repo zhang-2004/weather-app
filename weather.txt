@@ -44,7 +44,7 @@ def fetch_weather_data():
         print(f"发送邮件失败: {e}")  
   def check_weather():  
     temp = fetch_weather_data()  
-    if temp is not None and temp >= TEMPERATURE_THRESHOLD:  
+    if temp is not None and temp >= TEMPERATURE_-THRESHOLD:  
         send_alert(temp)  
     # 重新调度任务  
     scheduler.enter(CHECK_INTERVAL, 1, check_weather)  
