@@ -34,7 +34,7 @@ def fetch_weather_data():
     msg['To'] = TO_EMAIL  
   
     try:  
-        server = smtplib.SMTP('smtp.example.com', 587)  # 根据你的邮件服务提供商修改  
+        server = smtplib.SMTP('smtp.example.com', 587,)  # 根据你的邮件服务提供商修改  
         server.starttls()  
         server.login(EMAIL_USER, EMAIL_PASS)  
         server.sendmail(EMAIL_USER, TO_EMAIL, msg.as_string())  
