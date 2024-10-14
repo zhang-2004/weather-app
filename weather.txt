@@ -27,3 +27,19 @@ def fetch_weather_data():
     else:  
         print(f"Error fetching weather data: {data['message']}")  
         return None  
+        def send_alert(temp):  
+    msg = MIMEText(f"极端天气警报！当前{CITY}的温度为{temp}摄氏度，请注意防暑降温。")  
+    msg['Subject'] = '极端天气警报'  
+    msg['From'] = EMAIL_USER  
+    msg['To'] = TO_EMAIL  
+  
+    try:  
+        server = smtplib.SMTP('smtp.example.com', 587)  # 根据你的邮件服务提供商修改  
+        server.starttls()  
+        server.login(EMAIL_USER, EMAIL_PASS)  
+        server.sendmail(EMAIL_USER, TO_EMAIL, msg.as_string())  
+        server.quit()  
+        print("警报已发送")  
+    except Exception as e:  
+        print(f"发送邮件失败: {e}")  
+  
